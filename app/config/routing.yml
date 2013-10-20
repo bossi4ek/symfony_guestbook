@@ -1,0 +1,4 @@
+acme_guest_book:
+    resource: "@AcmeGuestBookBundle/Resources/config/routing.yml"
+    prefix:   /
+
