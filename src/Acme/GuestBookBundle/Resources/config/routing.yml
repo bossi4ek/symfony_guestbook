@@ -1,3 +1,7 @@
 acme_guest_book_homepage:
     pattern:  /guest_book
     defaults: { _controller: AcmeGuestBookBundle:Default:index }
+
+acme_guest_book_del:
+    pattern:  /guest_book/del/{id}
+    defaults: { _controller: AcmeGuestBookBundle:Default:del }

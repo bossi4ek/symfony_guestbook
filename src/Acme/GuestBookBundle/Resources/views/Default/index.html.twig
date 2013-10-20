@@ -1,1 +1,89 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/acmeguestbook/css/bootstrap.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/acmeguestbook/css/post.css') }}" rel="stylesheet" />
+{% endblock %}
+
+{% block title %}My cool guestbook{% endblock %}
+
+{% block body %}
+
+    {% block javascripts %}
+        <script src="{{ asset('bundles/acmeguestbook/js/jquery-1.10.2.js') }}"></script>
+        <script src="{{ asset('bundles/acmeguestbook/js/bootstrap.js') }}"></script>
+    {% endblock %}
+
+    <div id="content_header" class="content_header">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Гостевая книга</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Главня</a></li>
+                    <li><a href="#">Мои сообщения</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div id="content_main">
+        <div>
+            <div><label>Все сообщения</label></div>
+            <div id="allPost" class="postBox">
+                {% for post_data in post if post_data.title %}
+                <div class="panel panel-default">
+                    <div class="panel-heading post_head">
+                        <span class="post_user_name">{{ post_data.title }}</span>
+                        {#<span class="post_user_email">{{ post_data.email }}</span>#}
+                        <a href="{{ path('acme_guest_book_del', {'id': post_data.id}) }}">
+                            <span class="glyphicon glyphicon-remove post_delete"></span>
+                        </a>
+                        {#<span class="post_date"><?=isset($post['date_create']) ? date("j.m.Y H:i:s", $post['date_create']) : ''?></span>#}
+                    </div>
+                    <div class="panel-body post_body">
+                        {{ post_data.description }}
+                    </div>
+                </div>
+                {% else %}
+                    <div><center>Нет записей</center></div>
+                {% endfor %}
+            </div>
+            <div class="postForm">
+                <label>Добавить сообщение</label>
+                <div class="postFormBox">
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                    <div class="postFormFields">
+                        <div class="input-group">
+                            {{ form_label(form.user_name, 'Логин') }}
+                            {{ form_errors(form.user_name) }}
+                            {{ form_widget(form.user_name, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="input-group">
+                            {{ form_label(form.title, 'Заголовок') }}
+                            {{ form_errors(form.title) }}
+                            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div>
+                            {{ form_label(form.description, 'Сообщение') }}
+                            {{ form_errors(form.description) }}
+                            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="postFormButtons">
+                        <button class="btn btn-primary pull-right" onclick="clearPost()">Очистить</button>
+                        {#{{ form_widget(form.addPost, {'attr': {'class': 'form-btn btn-primary pull-right', 'value': 'Отправить'}}) }}#}
+                        <button type="submit" class="btn btn-primary pull-right" style="margin-right: 10px;"/>Отправить</button>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content_footer">
+    </div>
+{% endblock %}
