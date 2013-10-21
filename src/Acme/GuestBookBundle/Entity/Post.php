@@ -10,6 +10,7 @@
 namespace Acme\GuestBookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -26,6 +27,7 @@ class Post {
 
     /**
      * @ORM\Column()
+     * @Assert\Length(min = "4")
      */
     protected $username;
 
@@ -43,6 +45,8 @@ class Post {
      * @ORM\Column(type="integer")
      */
     protected $datecreate;
+
+    protected $randmessage;
 
 
     /**
@@ -146,4 +150,21 @@ class Post {
     {
         return $this->datecreate;
     }
+
+    /**
+     * @param mixed $randmessage
+     */
+    public function setRandmessage($randmessage)
+    {
+        $this->randmessage = $randmessage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRandmessage()
+    {
+        return $this->randmessage;
+    }
+
 }

@@ -44,4 +44,6 @@ class Post {
      */
     protected $datecreate;
 
+    protected $randmessage;
+
 }

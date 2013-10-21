@@ -23,9 +23,15 @@ class DefaultController extends Controller
 //            if ($form->get('Отправить')->isClicked()) {
                 $post_obj = $form->getData();
                 $post_obj->setDatecreate(time());
+
+                if ($post_obj->getRandmessage()) {
+                    $post_obj->setMessage($this->container->get('my_randomer')->generateRandomString());
+                }
+
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($post_obj);
                 $em->flush();
+
                 return $this->redirect($this->generateUrl('acme_guest_book_homepage'));
 //            }
         }

@@ -18,6 +18,9 @@ class PostType extends AbstractType
     {
         $builder->add('username', 'text')
                 ->add('email', 'email')
+                ->add('randmessage', 'checkbox', array(
+                    'required'  => false,
+                ))
                 ->add('message', 'textarea');
     }
 

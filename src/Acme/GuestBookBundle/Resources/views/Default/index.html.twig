@@ -13,6 +13,7 @@
     {% block javascripts %}
         <script src="{{ asset('bundles/acmeguestbook/js/jquery-1.10.2.js') }}"></script>
         <script src="{{ asset('bundles/acmeguestbook/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('bundles/acmeguestbook/js/main.js') }}"></script>
     {% endblock %}
 
     <div id="content_header" class="content_header">
@@ -66,6 +67,11 @@
                             {{ form_label(form.email, 'E-mail') }}
                             {{ form_errors(form.email) }}
                             {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="input-group">
+                            <span style="margin-right: 10px;">{{ form_label(form.randmessage, 'Случайное сообщение') }}
+                            {{ form_errors(form.randmessage) }}
+                            {{ form_widget(form.randmessage, {'attr': {'onclick': 'setRandomMessage(this)'}}) }}
                         </div>
                         <div>
                             {{ form_label(form.message, 'Сообщение') }}
