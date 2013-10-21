@@ -27,22 +27,22 @@ class Post {
     /**
      * @ORM\Column()
      */
-    protected $title;
+    protected $username;
 
     /**
      * @ORM\Column(type="text")
      */
-    protected $description;
+    protected $message;
 
     /**
      * @ORM\Column()
      */
-    protected $user_name;
+    protected $email;
 
     /**
      * @ORM\Column(type="integer")
      */
-    protected $date_create;
+    protected $datecreate;
 
 
     /**
@@ -56,94 +56,94 @@ class Post {
     }
 
     /**
-     * Set title
+     * Set username
      *
-     * @param string $title
+     * @param string $username
      * @return Post
      */
-    public function setTitle($title)
+    public function setUsername($username)
     {
-        $this->title = $title;
+        $this->username = $username;
     
         return $this;
     }
 
     /**
-     * Get title
+     * Get username
      *
      * @return string 
      */
-    public function getTitle()
+    public function getUsername()
     {
-        return $this->title;
+        return $this->username;
     }
 
     /**
-     * Set description
+     * Set message
      *
-     * @param string $description
+     * @param string $message
      * @return Post
      */
-    public function setDescription($description)
+    public function setMessage($message)
     {
-        $this->description = $description;
+        $this->message = $message;
     
         return $this;
     }
 
     /**
-     * Get description
+     * Get message
      *
      * @return string 
      */
-    public function getDescription()
+    public function getMessage()
     {
-        return $this->description;
+        return $this->message;
     }
 
     /**
-     * Set user_name
+     * Set email
      *
-     * @param string $userName
+     * @param string $email
      * @return Post
      */
-    public function setUserName($userName)
+    public function setEmail($email)
     {
-        $this->user_name = $userName;
+        $this->email = $email;
     
         return $this;
     }
 
     /**
-     * Get user_name
+     * Get email
      *
      * @return string 
      */
-    public function getUserName()
+    public function getEmail()
     {
-        return $this->user_name;
+        return $this->email;
     }
 
     /**
-     * Set date_create
+     * Set datecreate
      *
-     * @param integer $dateCreate
+     * @param integer $datecreate
      * @return Post
      */
-    public function setDateCreate($dateCreate)
+    public function setDatecreate($datecreate)
     {
-        $this->date_create = $dateCreate;
+        $this->datecreate = $datecreate;
     
         return $this;
     }
 
     /**
-     * Get date_create
+     * Get datecreate
      *
      * @return integer 
      */
-    public function getDateCreate()
+    public function getDatecreate()
     {
-        return $this->date_create;
+        return $this->datecreate;
     }
 }

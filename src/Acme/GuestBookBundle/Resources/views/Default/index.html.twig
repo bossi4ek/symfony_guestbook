@@ -18,11 +18,11 @@
     <div id="content_header" class="content_header">
         <nav class="navbar navbar-default" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Гостевая книга</a>
+                <a class="navbar-brand" href="{{ path('acme_guest_book_homepage')}}">Гостевая книга</a>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Главня</a></li>
+                    <li class="active"><a href="{{ path('acme_guest_book_homepage')}}">Главня</a></li>
                     <li><a href="#">Мои сообщения</a></li>
                 </ul>
             </div>
@@ -33,18 +33,18 @@
         <div>
             <div><label>Все сообщения</label></div>
             <div id="allPost" class="postBox">
-                {% for post_data in post if post_data.title %}
+                {% for post_data in post if post_data.username %}
                 <div class="panel panel-default">
                     <div class="panel-heading post_head">
-                        <span class="post_user_name">{{ post_data.title }}</span>
-                        {#<span class="post_user_email">{{ post_data.email }}</span>#}
+                        <span class="post_user_name">{{ post_data.username }}</span>
+                        <span class="post_user_email">({{ post_data.email }})</span>
                         <a href="{{ path('acme_guest_book_del', {'id': post_data.id}) }}">
                             <span class="glyphicon glyphicon-remove post_delete"></span>
                         </a>
-                        {#<span class="post_date"><?=isset($post['date_create']) ? date("j.m.Y H:i:s", $post['date_create']) : ''?></span>#}
+                        <span class="post_date">{{ post_data.datecreate|date('Y-m-d H:i:s') }}</span>
                     </div>
                     <div class="panel-body post_body">
-                        {{ post_data.description }}
+                        {{ post_data.message }}
                     </div>
                 </div>
                 {% else %}
@@ -58,23 +58,23 @@
                     {{ form_errors(form) }}
                     <div class="postFormFields">
                         <div class="input-group">
-                            {{ form_label(form.user_name, 'Логин') }}
-                            {{ form_errors(form.user_name) }}
-                            {{ form_widget(form.user_name, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_label(form.username, 'Логин') }}
+                            {{ form_errors(form.username) }}
+                            {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
                         </div>
                         <div class="input-group">
-                            {{ form_label(form.title, 'Заголовок') }}
-                            {{ form_errors(form.title) }}
-                            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_label(form.email, 'E-mail') }}
+                            {{ form_errors(form.email) }}
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
                         </div>
                         <div>
-                            {{ form_label(form.description, 'Сообщение') }}
-                            {{ form_errors(form.description) }}
-                            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_label(form.message, 'Сообщение') }}
+                            {{ form_errors(form.message) }}
+                            {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
                     <div class="postFormButtons">
-                        <button class="btn btn-primary pull-right" onclick="clearPost()">Очистить</button>
+                        {#<button class="btn btn-primary pull-right" onclick="clearPost()">Очистить</button>#}
                         {#{{ form_widget(form.addPost, {'attr': {'class': 'form-btn btn-primary pull-right', 'value': 'Отправить'}}) }}#}
                         <button type="submit" class="btn btn-primary pull-right" style="margin-right: 10px;"/>Отправить</button>
                     </div>

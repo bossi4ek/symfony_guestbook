@@ -22,7 +22,7 @@ class DefaultController extends Controller
         if ($form->isValid()) {
 //            if ($form->get('Отправить')->isClicked()) {
                 $post_obj = $form->getData();
-                $post_obj->setDateCreate(time());
+                $post_obj->setDatecreate(time());
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($post_obj);
                 $em->flush();
