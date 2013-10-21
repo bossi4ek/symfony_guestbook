@@ -24,6 +24,7 @@ class DefaultController extends Controller
                 $post_obj = $form->getData();
                 $post_obj->setDatecreate(time());
 
+                //Если выбран checkbox (постим рандомное сообщение)
                 if ($post_obj->getRandmessage()) {
                     $post_obj->setMessage($this->container->get('my_randomer')->generateRandomString());
                 }
