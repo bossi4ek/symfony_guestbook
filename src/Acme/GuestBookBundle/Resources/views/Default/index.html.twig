@@ -82,7 +82,7 @@
                     <div class="postFormButtons">
                         {#<button class="btn btn-primary pull-right" onclick="clearPost()">Очистить</button>#}
                         {#{{ form_widget(form.addPost, {'attr': {'class': 'form-btn btn-primary pull-right', 'value': 'Отправить'}}) }}#}
-                        <button type="submit" class="btn btn-primary pull-right" style="margin-right: 10px;"/>Отправить</button>
+                        <button id="sendMessage" type="submit" class="btn btn-primary pull-right" style="margin-right: 10px;"/>Отправить</button>
                     </div>
                     {{ form_end(form) }}
                 </div>
