@@ -35,7 +35,7 @@
             <div><label>Все сообщения</label></div>
             <div id="allPost" class="postBox">
                 {% for post_data in post if post_data.username %}
-                <div class="panel panel-default">
+                <div class="panel panel-default" id_post="{{ post_data.id }}">
                     <div class="panel-heading post_head">
                         <span class="post_user_name">{{ post_data.username }}</span>
                         <span class="post_user_email">({{ post_data.email }})</span>
